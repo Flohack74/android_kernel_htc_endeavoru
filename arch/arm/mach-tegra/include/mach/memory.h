@@ -29,13 +29,13 @@
 #define PLAT_PHYS_OFFSET		UL(0x80000000)
 #endif
 
-#if defined(CONFIG_MACH_GROUPER)
-#define END_MEM UL(0xBEA00000)
+#if defined(CONFIG_MACH_ENDEAVORU)
+#define END_MEM UL(0xBF200000)
 #endif
 
 #if defined(CONFIG_KEXEC_HARDBOOT)
-#if defined(CONFIG_MACH_GROUPER)
-#define KEXEC_HB_PAGE_ADDR UL(0xBEA00000)
+#if defined(CONFIG_MACH_ENDEAVORU)
+#define KEXEC_HB_PAGE_ADDR UL(0xBF200000)
 #else
 #error "Adress for kexec hardboot page not defined"
 #endif
