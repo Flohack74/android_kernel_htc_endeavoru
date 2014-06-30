@@ -222,11 +222,8 @@ config HTC_PROJECT
        select WATCHDOG
        select TEGRA_WATCHDOG
        select TEGRA_WATCHDOG_ENABLE_ON_PROBE
-       select BOOTPARAM_SOFTLOCKUP_PANIC
-       select DEBUG_MUTEXES
        select ANDROID_RAM_CONSOLE_APPEND_PMIC_STATUS_BITS
        select HTC_POWER_OFF
-       select DEBUG_CREDENTIALS
        select HTC_FIQ_DUMPER
        select TEGRA_FIQ_DEBUGGER
        select GENERIC_BUG
@@ -431,6 +428,13 @@ config TEGRA_EMC_SCALING_ENABLE
 	bool "Enable scaling the memory frequency"
 	depends on TEGRA_SILICON_PLATFORM
 	default n
+
+config VOLTAGE_CONTROL
+	bool "Enable user voltage control on Tegra CPU"
+	depends on TEGRA_SILICON_PLATFORM
+	default n
+	help
+	User custom voltage control interface
 
 config TEGRA_CPU_DVFS
 	bool "Enable voltage scaling on Tegra CPU"
@@ -889,3 +893,11 @@ config HTC_PERFORMANCE_MONITOR_ALWAYS_ON
 	help
 	  ignore the debug flag KERNEL_FLAG_PM_MONITOR; always enable
 	  the htc performance monitor
+
+config RQ_STATS
+	bool "Enable Run queue statistics"
+	default n
+	help
+	  Select this to enable scheduler rune queue statistic
+	  collections
+

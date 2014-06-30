@@ -16,6 +16,12 @@ config BITREVERSE
 config RATIONAL
 	boolean
 
+config GENERIC_STRNCPY_FROM_USER
+	bool
+
+config GENERIC_STRNLEN_USER
+	bool
+
 config GENERIC_FIND_FIRST_BIT
 	bool
 
@@ -59,6 +65,16 @@ config CRC32
 	  modules require CRC32 functions, but a module built outside the
 	  kernel tree does. Such modules that use library CRC32 functions
 	  require M here.
+
+config CRC32_SELFTEST
+	bool "CRC32 perform self test on init"
+	default n
+	depends on CRC32
+	help
+	  This option enables the CRC32 library functions to perform a
+	  self test on initialization. The self test computes crc32_le
+	  and crc32_be over byte strings with random alignment and length
+	  and computes the total elapsed time and number of bytes processed.
 
 config CRC7
 	tristate "CRC7 functions"
@@ -106,6 +122,15 @@ config LZO_COMPRESS
 config LZO_DECOMPRESS
 	tristate
 
+config LZ4_COMPRESS
+	tristate
+
+config LZ4HC_COMPRESS
+	tristate
+
+config LZ4_DECOMPRESS
+	tristate
+
 source "lib/xz/Kconfig"
 
 #
@@ -128,6 +153,10 @@ config DECOMPRESS_XZ
 
 config DECOMPRESS_LZO
 	select LZO_DECOMPRESS
+	tristate
+
+config DECOMPRESS_LZ4
+	select LZ4_DECOMPRESS
 	tristate
 
 #
