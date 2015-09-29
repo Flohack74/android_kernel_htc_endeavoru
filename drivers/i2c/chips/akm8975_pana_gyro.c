@@ -27,7 +27,7 @@
 #include <linux/earlysuspend.h>
 #include <mach/mfootprint.h>
 
-#define DEBUG 0
+#define DEBUG 1
 #define MAX_FAILURE_COUNT 3
 /*#define AKM_EARLY_SUSPEND 1*/
 
