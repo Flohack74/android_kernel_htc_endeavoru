@@ -1,6 +1,5 @@
 obj-m += compat.o
 #compat-objs :=
-ccflags-y := -std=gnu99
 obj-$(CONFIG_COMPAT_FIRMWARE_CLASS) += compat_firmware_class.o
 
 compat-y += main.o
