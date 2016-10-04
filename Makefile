@@ -658,7 +658,7 @@ ifneq ($(KCFLAGS),)
         KBUILD_CFLAGS += $(KCFLAGS)
 endif
 
-CFLAGS_MODULE=-fno-pic 
+#CFLAGS_MODULE=-fno-pic 
 
 # Use --build-id when available.
 LDFLAGS_BUILD_ID = $(patsubst -Wl$(comma)%,%,\
