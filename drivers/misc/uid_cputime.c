@@ -39,7 +39,9 @@ struct uid_entry {
 static struct uid_entry *find_uid_entry(uid_t uid)
 {
 	struct uid_entry *uid_entry;
-	hash_for_each_possible(hash_table, uid_entry, hash, uid) {
+	struct hlist_node *node;
+
+	hash_for_each_possible(hash_table, uid_entry, node, hash, uid) {
 		if (uid_entry->uid == uid)
 			return uid_entry;
 	}
@@ -99,7 +101,7 @@ static int uid_stat_show(struct seq_file *m, void *v)
 }
 static int uid_stat_open(struct inode *inode, struct file *file)
 {
-	return single_open(file, uid_stat_show, PDE_DATA(inode));
+	return single_open(file, uid_stat_show, PDE(inode)->data);
 }
 static const struct file_operations uid_stat_fops = {
 	.open		= uid_stat_open,
@@ -115,7 +117,7 @@ static ssize_t uid_remove_write(struct file *file,
 			const char __user *buffer, size_t count, loff_t *ppos)
 {
 	struct uid_entry *uid_entry;
-	struct hlist_node *tmp;
+	struct hlist_node *node, *tmp;
 	char uids[128];
 	char *start_uid, *end_uid = NULL;
 	long int uid_start = 0, uid_end = 0;
