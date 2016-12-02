@@ -51,16 +51,12 @@ static unsigned long free_mem_end_ptr;
 #include "../../../../lib/decompress_unlzma.c"
 #endif
 
-#ifdef CONFIG_KERNEL_XZ
-#include "../../../../lib/decompress_unxz.c"
-#endif
-
 #ifdef CONFIG_KERNEL_LZO
 #include "../../../../lib/decompress_unlzo.c"
 #endif
 
-#ifdef CONFIG_KERNEL_LZ4
-#include "../../../../lib/decompress_unlz4.c"
+#ifdef CONFIG_KERNEL_XZ
+#include "../../../../lib/decompress_unxz.c"
 #endif
 
 extern _sclp_print_early(const char *);
